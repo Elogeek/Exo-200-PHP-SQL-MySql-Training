@@ -16,10 +16,10 @@
             <option value="difficile">Difficile</option>
             <option value="très difficile">Très difficile</option>
         </select>
-        <input type="number" name="distance">
+        <input type="number" name="distance" placeholder="km">
         <!-- Ajoutez un / des champs pour gérer la donnée de type time à insérer via PHP -->
         .....
-        <input type="number" name="height_difference">
+        <input type="number" name="height_difference" placeholder="dénivelé">
     </form>
 </body>
 </html>
