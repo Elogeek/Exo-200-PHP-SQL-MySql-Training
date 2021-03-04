@@ -10,7 +10,7 @@ try {
     $connect = new PDO("mysql:host=$server;dbname=$db;charset=utf8", $user, $pass);
     $connect->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     $connect->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $sth = $connect->prepare("DELETE FROM hiking WHERE id");
+    $sth = $connect->prepare("");
     $sth->execute();
 }
 catch (PDOExeption $exeption){

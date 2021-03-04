@@ -39,15 +39,17 @@ require_once 'include.php';
         $distance= "1.9";
         $duration = "00:01:30";
         $height_difference = "110";
+        $available = "ok";
 
-        $sth = $connect->prepare("INSERT INTO hiking(name,difficulty,distance,duration,height_difference)
-                                           VALUES(:name,:difficulty,:distance,:duration,:height_difference) ");
+        $sth = $connect->prepare("INSERT INTO hiking(name,difficulty,distance,duration,height_difference,available)
+                                           VALUES(:name,:difficulty,:distance,:duration,:height_difference,:available) ");
         $sth->execute([
              ':name'=> $name,
              ':difficulty'=> $difficulty,
              ':distance' => $distance,
              ':duration' => $duration,
-             ':height_difference' => $height_difference
+             ':height_difference' => $height_difference,
+             ':available'=> $available
         ]);
         echo '<div id="succes">' ."La randonnée a été ajoutée avec succès." .'</div>';
                                                                                        
@@ -55,6 +57,7 @@ require_once 'include.php';
     catch (PDOExeption $exeption){
         echo "Erreur" . $exeption->getMessage();
      }
+
 ?>
 </body>
 </html>
