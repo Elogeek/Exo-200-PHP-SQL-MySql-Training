@@ -20,7 +20,16 @@ td {
   padding: 10px;
 }
 
-#succes {
-  background-color: chartreuse;
-  font-size: x-large;
+.succes {
+  background-color: greenyellow;
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+}
+
+.error {
+  background-color: darkred;
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
 }

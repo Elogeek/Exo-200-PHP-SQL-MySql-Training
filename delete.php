@@ -1,18 +1,15 @@
 <?php
-require_once 'include.php';
+require_once "include.php";
 
-$server ='localhost';
-$db = 'exo_200';
-$user = 'root';
-$pass ='dev';
 
-try {
-    $connect = new PDO("mysql:host=$server;dbname=$db;charset=utf8", $user, $pass);
-    $connect->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-    $connect->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $sth = $connect->prepare("DELETE FROM hiking WHERE  id = 0");
-    $sth->execute();
+$search = $db->prepare("DELETE FROM hiking WHERE id = $rando");
+
+$state = $search->execute();
+
+if($state) {
+    header("location: read.php?post=ok");
 }
-catch (PDOExeption $exeption){
-    echo "Erreur" . $exeption->getMessage();
+else {
+    header("location: read.php?post=notOk");
 }
+
