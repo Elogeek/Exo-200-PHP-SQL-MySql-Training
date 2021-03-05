@@ -11,11 +11,10 @@
     <form action="read.php">
         <input type="text" name="name" placeholder="Nom de la randonnée">
         <select name="difficulty" id="difficulty">
-            <option value="très facile">Très facile</option>
             <option value="facile">Facile</option>
             <option value="moyen">Moyen</option>
             <option value="difficile">Difficile</option>
-            <option value="très difficile">Très difficile</option>
+            <option value="extrême">Très difficile</option>
         </select>
         <input type="number" name="distance" placeholder="km">
         <input type="number" name="time" placeholder="temps de la rando">
@@ -34,6 +33,14 @@ require_once 'include.php';
         $connect->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         $connect->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
+        function secure($data) {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data =htmlspecialchars($data);
+            $data =addslashes($data);
+            return $data;
+        }
+
         $name = "La forêt de Mare Longue";
         $difficulty = "facile";
         $distance= "1.9";
@@ -44,12 +51,12 @@ require_once 'include.php';
         $sth = $connect->prepare("INSERT INTO hiking(name,difficulty,distance,duration,height_difference,available)
                                            VALUES(:name,:difficulty,:distance,:duration,:height_difference,:available) ");
         $sth->execute([
-             ':name'=> $name,
-             ':difficulty'=> $difficulty,
-             ':distance' => $distance,
-             ':duration' => $duration,
-             ':height_difference' => $height_difference,
-             ':available'=> $available
+             ':name'=> secure($name),
+             ':difficulty'=> secure($difficulty),
+             ':distance' => secure($distance),
+             ':duration' => secure($duration),
+             ':height_difference' => secure($height_difference),
+             ':available'=> secure($available)
         ]);
         echo '<div id="succes">' ."La randonnée a été ajoutée avec succès." .'</div>';
                                                                                        

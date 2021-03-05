@@ -13,12 +13,9 @@ try {
     $stmt = $connect->prepare("SELECT * FROM hiking");
     $result = $stmt->execute();
     if($result) {
-        foreach($stmt->fetchAll() as $ligne) {
-            echo "<pre>";
-            print_r($result);
-            echo "</pre>";
-
-        }
+        echo "<pre>";
+        print_r($stmt->fetchAll());
+        echo "</pre>";
     }
 }
 
